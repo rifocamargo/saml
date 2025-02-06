@@ -11,6 +11,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(@AuthenticationPrincipal Saml2AuthenticatedPrincipal principal, Model model) {
+        System.out.println("principal.getName(): " + principal.getName());
         model.addAttribute("name", principal.getName());
         model.addAttribute("emailAddress", principal.getFirstAttribute("email"));
         model.addAttribute("userAttributes", principal.getAttributes());
