@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: saml
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          keycloak:
+            assertingparty:
+              metadata-uri: http://localhost:8080/realms/master/protocol/saml/descriptor
+              #singlelogout:
+              #  response-url: 
+            signing:
+              credentials:
+                - private-key-location: classpath:local.key
+                  certificate-location: classpath:local.crt
+            singlelogout:
+              binding: POST
+              response-url: "{baseUrl}/logout/saml2/slo"
+logging:
+  level:
+    org.opensaml: debug
